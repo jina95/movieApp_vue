@@ -1,6 +1,6 @@
 <template>
   <header>
-    <h1>MOVIE</h1>
+    <router-link to="/" class="logo">MOVIE</router-link>
   </header>
 </template>
 

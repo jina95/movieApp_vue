@@ -1,0 +1,23 @@
+body {
+    background-color: #141414;
+}
+a {
+    text-decoration:none;
+}
+.app {
+    /* background-color: black; */
+}
+header{
+    padding:20px 0;
+    /* background-color: #F2CB57; */
+    text-align: center;
+    margin-bottom: 20px;
+}
+.logo {
+    font-size:50px;
+    font-weight: bold;
+    color: #E50914;
+}
+.resultForm {
+    color: #fff;
+}

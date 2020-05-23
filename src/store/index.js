@@ -8,13 +8,19 @@ export default new Vuex.Store({
   state: {
     movie: [],
     value: '',
+    count: '',
+    type: '',
   },
   mutations: {
     SET_MOVIE(state, data) {
-      state.movie = data;
+      state.movie = data.Data[0].Result;
+      state.count = data.Data[0].Count;
     },
     SET_VALUE(state, data) {
       state.value = data;
+    },
+    SET_TYPE(state, data) {
+      state.type = data;
     },
   },
   actions: {

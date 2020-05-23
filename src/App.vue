@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="app">
     <AppHeader></AppHeader>
     <router-view></router-view>
   </div>
@@ -14,4 +14,7 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+@import './css/reset.css';
+@import './css/common.css';
+</style>
