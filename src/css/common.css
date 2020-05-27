@@ -5,7 +5,7 @@ a {
     text-decoration:none;
 }
 .app {
-    /* background-color: black; */
+    padding: 0 20px;
 }
 header{
     padding:20px 0;
@@ -18,6 +18,42 @@ header{
     font-weight: bold;
     color: #E50914;
 }
+
+/* searchForm */
+.searchForm select {
+    width:10vw;
+    padding:10px 5px;
+}
+.searchForm input {
+    width: 80vw;
+    padding:10px 5px;
+}
+.searchForm button {
+    padding:10px 5px;
+}
+
+/* resultForm */
 .resultForm {
     color: #fff;
+}
+.resultForm span:first-child {
+  color: #808080;
+}
+.resultForm span b {
+  color: #fff;
+}
+
+.resultForm .resultTotal {
+  display: block;
+  margin:10px 0;
+}
+
+.resultForm ul {
+  overflow: hidden;
+}
+
+.resultForm li {
+  float: left;
+  width: auto;
+  margin: 5px;
 }

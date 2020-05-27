@@ -1,14 +1,16 @@
 <template>
-  <form @submit.prevent="submitForm">
+  <form @submit.prevent="submitForm" class="searchForm">
     <select v-model="selectedType">
-      <option disabled value="">Please select one</option>
-      <option value="title">제목</option>
-      <option value="director">감독</option>
-      <option value="actor">배우</option>
-      <option value="keyword">키워드</option>
+      <option
+        v-for="option in options"
+        :key="option.value"
+        :value="option.value"
+      >
+        {{ option.text }}
+      </option>
     </select>
-    <input type="text" placeholder="제목을 입력하세요" v-model="inputValue" />
-    <button type="submit"></button>
+    <input type="text" placeholder="검색어를 입력하세요" v-model="inputValue" />
+    <button type="submit"><i class="fas fa-search"></i></button>
   </form>
 </template>
 
@@ -18,7 +20,13 @@ export default {
   data() {
     return {
       inputValue: '',
-      selectedType: '',
+      selectedType: 'title',
+      options: [
+        { text: '제목', value: 'title' },
+        { text: '감독', value: 'director' },
+        { text: '배우', value: 'actor' },
+        { text: '키워드', value: 'keyword' },
+      ],
     };
   },
   computed: {
@@ -29,6 +37,8 @@ export default {
   created() {},
   methods: {
     submitForm() {
+      // 타입을 선택하지 않거나, 검색어가 비어져있을때
+      if (this.inputValue === '') return alert('검색어를 입력해주세요.');
       // eventBus.$emit('loadMovie', this.inputValue);
       this.$store.commit('SET_VALUE', this.inputValue);
       this.$store.commit('SET_TYPE', this.selectedType);
