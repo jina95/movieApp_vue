@@ -8,7 +8,12 @@
     <ul>
       <li v-for="item in $store.state.movie" :key="item.DOCID">
         <h3>{{ replaceName(item.title) }}</h3>
-        <a :href="item.kmdbUrl"><img :src="srcCheck(item.posters)"/></a>
+        <a ><img :src="srcCheck(item.posters)"/></a>
+        <!-- <router-link to="/infor"></router-link> -->
+        <div class="movieInfor" @click.prevent="goToInfroPage(item)">
+          <span>감독: {{ item.directors.director[0].directorNm }}</span>
+          <p>{{ item.plots.plot[0].plotText }}</p>
+        </div>
       </li>
     </ul>
   </div>
@@ -22,6 +27,7 @@ export default {
     return {
       value: this.$store.state.value,
       selectedType: this.$store.state.type,
+      titleName:''
     };
   },
   computed: {
@@ -31,20 +37,16 @@ export default {
     resultTotalCount() {
       return this.$store.state.count;
     },
-    // replaceName(name){
-    //   return name.replace(/!HS|!HE|\s/g, '')
-    // }
   },
   created() {
     // eventBus.$on('loadMovie', inputValue => {
     //   this.value = inputValue;
     // });
     this.$store.dispatch('FECH_MOVIE', `${this.selectedType}=${this.value}`);
-
-    // this.movieResult = this.$store.state.movie;
   },
   methods: {
     replaceName(name){ // 검색시 뜨는 !HS 와 !HE 제거 
+      // this.titleName = name.replace(/!HS|!HE|\s/g, '')
       return name.replace(/!HS|!HE|\s/g, '')
     },
     srcCheck(item) {
@@ -60,6 +62,13 @@ export default {
       } else return item;
       // | 를 포함하지 않는다는 것은 주소가 중복이 아니기 때문에 리턴해준다.
     },
+    goToInfroPage(item){
+      console.log(item)
+      // this.gotoMovie = item;
+      this.$store.commit('SET_INFORMOVIE', item )
+      // this.$store.commit('SET_INFORTITLE',  )
+      this.$router.push('/information')
+    }
   },
 };
 </script>

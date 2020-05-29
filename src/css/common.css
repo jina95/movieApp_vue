@@ -36,10 +36,10 @@ header{
 .resultForm {
     color: #fff;
 }
-.resultForm span:first-child {
+.resultForm > span:first-child {
   color: #808080;
 }
-.resultForm span b {
+.resultForm > span b {
   color: #fff;
 }
 
@@ -53,7 +53,55 @@ header{
 }
 
 .resultForm li {
+  position: relative;
   float: left;
   width: auto;
   margin: 5px;
+}
+
+.resultForm li > a {
+  display: inline-block;
+
+  width:213px;
+  height: 316px;
+}
+.resultForm li > a > img {
+  width: 100%;
+}
+.resultForm li .movieInfor {
+  display: none;
+}
+.resultForm li:hover .movieInfor {
+  display: block;
+  position: absolute;
+  top:16px;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  /* width:213px; */
+  /* width:213px; */
+  /* height: 316px; */
+  padding:15px;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.movieInfor > * {
+  color: #c0c0c0;
+}
+.movieInfor > span {
+  display: inline-block;
+  margin-top: 50px;
+  margin-bottom: 10px;
+}
+.movieInfor > p {
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis;
+  white-space: normal; 
+  line-height: 1.2; 
+  max-height:11.6em; 
+  text-align: left;
+  word-wrap: break-word; 
+  display: -webkit-box; 
+ -webkit-line-clamp: 10;
+  -webkit-box-orient: vertical;
 }
