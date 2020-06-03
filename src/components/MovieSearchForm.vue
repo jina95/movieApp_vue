@@ -39,12 +39,9 @@ export default {
     submitForm() {
       // 타입을 선택하지 않거나, 검색어가 비어져있을때
       if (this.inputValue === '') return alert('검색어를 입력해주세요.');
-      // eventBus.$emit('loadMovie', this.inputValue);
       this.$store.commit('SET_VALUE', this.inputValue);
       this.$store.commit('SET_TYPE', this.selectedType);
       this.$router.push('/result');
-      // this.$store.dispatch('FECH_MOVIE', `director=${this.inputValue}`);
-      // this.$store.dispatch('FECH_MOVIE', `title=${this.inputValue}`);
     },
   },
 };

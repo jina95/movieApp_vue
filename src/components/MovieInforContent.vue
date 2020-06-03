@@ -10,10 +10,10 @@
         <span class="genre_nation">{{ movie.genre }} {{ movie.nation }}</span>
         <span class="repRlsDate">{{ movie.repRlsDate }}(개봉)</span>
         <span>{{ movie.runtime }}분, </span>
-        <span>{{ movie.ratings.rating[0].ratingGrade }}</span>
+        <span>{{ isRatingGrade(movie) }}</span>
         <div>
           <span>감독 : </span>
-          <em>{{ movie.directors.director[0].directorNm }}</em>
+          <em>{{ isDirectorNm(movie) }}</em>
         </div>
         <!-- <ul>
           출연진 :
@@ -26,7 +26,12 @@
           </li>
         </ul> -->
         <ul class="actor">
+          <!-- <ul class="actor" :v-bind="threeActors(movie)"> -->
           출연진 :
+          <!-- {{
+            actors
+          }} -->
+          <!-- <li v-for=""></li> -->
           <li>{{ movie.actors.actor[0].actorNm }},</li>
           <li>{{ movie.actors.actor[1].actorNm }},</li>
           <li>{{ movie.actors.actor[2].actorNm }}</li>
@@ -59,9 +64,26 @@ export default {
       movieTitle: this.$store.state.inforTitle,
       moviePoster: this.$store.state.inforPoster,
       stllImgArray: [],
+      actors: [],
     };
   },
+  computed: {},
   methods: {
+    isRatingGrade(item) {
+      return item.ratings.rating[0].ratingGrade;
+    },
+    isDirectorNm(item) {
+      return item.directors.director[0].directorNm;
+    },
+    // threeActors(item) {
+    //   //   for (let i = 0; i < 3; i++) {
+    //   //     while (!this.actors.length < 4) {
+    //   //       this.actors.push(item.actors.actor[i].actorNm);
+    //   //     }
+    //   //   }
+
+    //   console.log(this.actors.length);
+    // },
     stllImgCheck(item) {
       this.stllImgArray = item.split('|');
     },
