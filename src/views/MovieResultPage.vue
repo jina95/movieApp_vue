@@ -5,7 +5,6 @@
 </template>
 
 <script>
-
 import MovieResultContents from '../components/MovieResultContents';
 export default {
   components: { MovieResultContents },

@@ -105,3 +105,68 @@ header{
  -webkit-line-clamp: 10;
   -webkit-box-orient: vertical;
 }
+
+/* components - inforContent */
+.inforContent {
+  padding: 10px;
+  background-color:  rgba(228, 228, 229, 0.4);
+  text-align: center;
+  /* border-radius: 5%; */
+}
+.inforContent > * {
+  color: white;
+  line-height: 1.3;
+}
+.infor_main {
+  display: inline-block;
+  padding: 10px;
+  /* width:70%; */
+  /* margin: 0 auto; */
+  overflow: hidden;
+  outline:1px solid wheat;
+}
+.infor_main > .main_poster {
+  float: left;
+  margin-right: 10px;
+}
+.infor_main > .main_poster > img {
+  width: 213px;
+  height: 316px;
+}
+.infor_main > .main_text {
+  float: right;
+}
+/* .infor_main > .main_text > * {
+  display: block;
+} */
+/* .infor_main > .main_text > h2 {
+  display: inline-block;
+} */
+.infor_main > .main_text > .eng_title {
+  display: block;
+  color: rgba(202, 188, 188, 0.726);
+}
+.infor_main > .main_text > .genre_nation , .infor_main > .main_text >.repRlsDate{
+  display: block;
+}
+/* .infor_main > .main_text .actor {
+  display: inline-block;
+} */
+.infor_main > .main_text .actor > * {
+  display: inline-block;
+}
+.infor_story {
+  margin:20px 0;
+}
+.infor_story > span {
+  display: block;
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+/* .infor_story > p {
+  line-height: 1.3;
+} */
+.infror_stlls li {
+  display: inline-block;
+}

@@ -10,7 +10,9 @@ export default new Vuex.Store({
     value: '',
     count: '',
     type: '',
-    inforMovie:[],
+    inforTitle: '',
+    inforPoster: '',
+    inforMovie: [],
   },
   mutations: {
     SET_MOVIE(state, data) {
@@ -23,8 +25,14 @@ export default new Vuex.Store({
     SET_TYPE(state, data) {
       state.type = data;
     },
-    SET_INFORMOVIE(state, data){
-      state.inforMovie = data
+    SET_INFORTITLE(state, data) {
+      state.inforTitle = data;
+    },
+    SET_INFORPOSTER(state, data) {
+      state.inforPoster = data;
+    },
+    SET_INFORMOVIE(state, data) {
+      state.inforMovie = data;
     },
   },
   actions: {

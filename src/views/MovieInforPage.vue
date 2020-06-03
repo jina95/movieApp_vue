@@ -1,15 +1,14 @@
 <template>
   <div>
-      <MovieInforContent></MovieInforContent>
+    <MovieInforContent></MovieInforContent>
   </div>
 </template>
 
 <script>
 import MovieInforContent from '@/components/MovieInforContent.vue';
 export default {
-    components:{ MovieInforContent }    
-}
+  components: { MovieInforContent },
+};
 </script>
 
-<style>
-</style>
+<style></style>
