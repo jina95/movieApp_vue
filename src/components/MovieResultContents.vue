@@ -27,6 +27,8 @@
 <script>
 // import { eventBus } from '../main';
 import { log } from 'util';
+import { saveInforMoiveToCookie } from '../utils/cookies'
+
 export default {
   data() {
     return {
@@ -70,12 +72,11 @@ export default {
     goToInfroPage(item) {
       console.log(item);
       this.$store.commit('SET_INFORMOVIE', item);
-      // this.$store.commit(
-      //   'SET_INFORTITLE',
-      //   item.title.replace(/!HS|!HE|\s/g, ''),
-      // );
       this.$store.commit('SET_INFORTITLE', this.replaceName(item.title)),
-        this.$store.commit('SET_INFORPOSTER', this.srcCheck(item.posters));
+      this.$store.commit('SET_INFORPOSTER', this.srcCheck(item.posters));
+      // 쿠키에 저장
+      // saveInforMoiveToCookie(item);
+
 
       this.$router.push('/information');
     },

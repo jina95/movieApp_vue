@@ -13,7 +13,7 @@ import axios from 'axios';
 // }
 const config = {
   baseURL:
-    'http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&detail=Y&',
+    'http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&detail=Y&listCount=100&sort=prodYear,1&',
   myKey: '&ServiceKey=GSWDA51M976509D7B9LM',
 };
 

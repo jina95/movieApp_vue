@@ -1,15 +1,16 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import { fetchMovie } from '../api/index';
+import { getTypeFromCookie, getValueFromCookie } from '../utils/cookies';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
     movie: [],
-    value: '',
+    value: getValueFromCookie() || '',
     count: '',
-    type: '',
+    type: getTypeFromCookie() || '',
     inforTitle: '',
     inforPoster: '',
     inforMovie: [],
@@ -33,6 +34,9 @@ export default new Vuex.Store({
     },
     SET_INFORMOVIE(state, data) {
       state.inforMovie = data;
+    },
+    ClearMovie(state) {
+      (state.value = ''), (state.type = '');
     },
   },
   actions: {

@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import { saveTypeToCookie, saveValueToCookie } from '../utils/cookies';
 export default {
   data() {
     return {
@@ -28,6 +29,9 @@ export default {
     submitKeyword(value) {
       this.$store.commit('SET_VALUE', value);
       this.$store.commit('SET_TYPE', 'keyword');
+      // 쿠키에 저장
+      saveValueToCookie(value);
+      saveTypeToCookie('keyword');
       this.$router.push('/result');
     },
   },

@@ -53,6 +53,7 @@
         <img v-for="src in stllImgArray" :key="src.index" :src="src" alt="" />
       </div> -->
     </div>
+    <span>비슷한 콘텐츠</span>
   </div>
 </template>
 

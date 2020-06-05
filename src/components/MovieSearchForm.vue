@@ -16,6 +16,8 @@
 
 <script>
 import { eventBus } from '../main';
+import { saveTypeToCookie, saveValueToCookie, deleteCookie } from '../utils/cookies';
+
 export default {
   data() {
     return {
@@ -34,13 +36,21 @@ export default {
     //   return this.$store.state.movie;
     // },
   },
-  created() {},
+  created() {
+    deleteCookie('til_type')
+    deleteCookie('til_value')
+    this.$store.commit('ClearMovie')
+  },
   methods: {
     submitForm() {
       // 타입을 선택하지 않거나, 검색어가 비어져있을때
       if (this.inputValue === '') return alert('검색어를 입력해주세요.');
       this.$store.commit('SET_VALUE', this.inputValue);
       this.$store.commit('SET_TYPE', this.selectedType);
+      // 쿠키에 저장
+      saveValueToCookie(this.inputValue);
+      saveTypeToCookie(this.selectedType);
+      // 페이지 이동
       this.$router.push('/result');
     },
   },
