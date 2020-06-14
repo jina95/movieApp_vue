@@ -14,11 +14,19 @@ import axios from 'axios';
 const config = {
   baseURL:
     'http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&detail=Y&listCount=100&sort=prodYear,1&',
+  baseURL:
+    'http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&detail=Y&sort=prodYear,1&',
   myKey: '&ServiceKey=GSWDA51M976509D7B9LM',
 };
 
 function fetchMovie(value) {
-  return axios.get(`${config.baseURL}${value}${config.myKey}`);
+  return axios.get(`${config.baseURL}listCount=100&${value}${config.myKey}`);
 }
+function fetchSimilarMovie(value) {
+  return axios.get(`${config.baseURL}listCount=10&${value}${config.myKey}`);
+}
+// function fetchInforMovie(value) {
+//   return axios.get(`${config.baseURL}${value}${config.myKey}`);
+// }
 
-export { fetchMovie };
+export { fetchMovie, fetchSimilarMovie };

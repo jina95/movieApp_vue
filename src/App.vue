@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import AppHeader from './components/common/AppHeader.vue';
+import AppHeader from './views/AppHeader';
 export default {
   components: {
     AppHeader,

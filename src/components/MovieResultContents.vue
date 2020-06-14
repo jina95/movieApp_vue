@@ -8,9 +8,18 @@
       <span class="resultTotal">토탈 값: {{ resultTotalCount }}</span>
       <ul>
         <li v-for="item in $store.state.movie" :key="item.DOCID">
-          <h3>{{ replaceName(item.title) }}</h3>
-          <a><img :src="srcCheck(item.posters)"/></a>
-          <!-- <router-link to="/infor"></router-link> -->
+          <div class="result_head">
+            <h3>{{ replaceName(item.title) }}</h3>
+            <div class="favoriteBtnBox">
+              <button v-if="!heartMode" v-on:click="heartOn(item)">
+                <i click="" class="far fa-heart"></i>
+              </button>
+              <button v-else v-on:click="heartOff">
+                <i click="" class="fas fa-heart"></i>
+              </button>
+            </div>
+          </div>
+          <a><img :src="srcPosterCheck(item.posters)"/></a>
           <div class="movieInfor" @click.prevent="goToInfroPage(item)">
             <span>감독: {{ item.directors.director[0].directorNm }}</span>
             <p>{{ item.plots.plot[0].plotText }}</p>
@@ -25,9 +34,14 @@
 </template>
 
 <script>
-// import { eventBus } from '../main';
 import { log } from 'util';
-import { saveInforMoiveToCookie } from '../utils/cookies'
+import {
+  saveMovieIdToCookie,
+  saveMovieSeqToCookie,
+  saveValueToCookie,
+  saveSimilarKeywordToCookie,
+} from '../utils/cookies';
+import { srcCheck } from '../utils/filters';
 
 export default {
   data() {
@@ -35,6 +49,7 @@ export default {
       value: this.$store.state.value,
       selectedType: this.$store.state.type,
       selectPoster: '',
+      heartMode: false,
     };
   },
   computed: {
@@ -46,9 +61,6 @@ export default {
     },
   },
   created() {
-    // eventBus.$on('loadMovie', inputValue => {
-    //   this.value = inputValue;
-    // });
     this.$store.dispatch('FECH_MOVIE', `${this.selectedType}=${this.value}`);
   },
   methods: {
@@ -56,29 +68,34 @@ export default {
       // 검색시 뜨는 !HS 와 !HE 제거
       return name.replace(/!HS|!HE|\s/g, '');
     },
-    srcCheck(item) {
-      // poster 주소를 인자로 받아와서
-      if (item.includes('|')) {
-        //|가 포함되있다면(중복될때 | 가 들어감)
-        return item.substring(0, item.indexOf('|'));
-        // substring 으로 0번째 글자부터 |의 위치를 받아와서 자른다.
-        // substring([시작위치], [종료위치]);
-      } else if (item === '') {
-        // 포스터 주소가 비어져 있을때
-        return 'http://placehold.it/213x316';
-      } else return item;
-      // | 를 포함하지 않는다는 것은 주소가 중복이 아니기 때문에 리턴해준다.
+    srcPosterCheck(item) {
+      // 포스터 주소 체크 (중복여부 & | 체크)
+      return srcCheck(item);
     },
     goToInfroPage(item) {
-      console.log(item);
+      let firstGenre = item.genre.substring(0, item.genre.indexOf(','));
+      // 첫번째 키워드 확인
+
       this.$store.commit('SET_INFORMOVIE', item);
-      this.$store.commit('SET_INFORTITLE', this.replaceName(item.title)),
-      this.$store.commit('SET_INFORPOSTER', this.srcCheck(item.posters));
+      // this.$store.commit('SET_MOVIEID', item.movieId);
+      // this.$store.commit('SET_MOVIESEQ', item.movieSeq);
+      this.$store.commit('SET_SIMILARKEYWORD', firstGenre);
+
       // 쿠키에 저장
-      // saveInforMoiveToCookie(item);
+      saveMovieIdToCookie(this.$store.state.movieId);
+      saveMovieSeqToCookie(this.$store.state.movieSeq);
+      saveSimilarKeywordToCookie(firstGenre);
 
-
+      // 인포창으로 이동
       this.$router.push('/information');
+    },
+    heartOn(item) {
+      item.heartMode = 'aa';
+      this.heartMode = true;
+      console.log(item);
+    },
+    heartOff() {
+      this.heartMode = false;
     },
   },
 };

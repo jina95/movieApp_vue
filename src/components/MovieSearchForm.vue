@@ -16,7 +16,11 @@
 
 <script>
 import { eventBus } from '../main';
-import { saveTypeToCookie, saveValueToCookie, deleteCookie } from '../utils/cookies';
+import {
+  saveTypeToCookie,
+  saveValueToCookie,
+  deleteCookie,
+} from '../utils/cookies';
 
 export default {
   data() {
@@ -37,9 +41,15 @@ export default {
     // },
   },
   created() {
-    deleteCookie('til_type')
-    deleteCookie('til_value')
-    this.$store.commit('ClearMovie')
+    // 메인페이지에 오면 쿠키를 지운다.
+    deleteCookie('til_type');
+    deleteCookie('til_value');
+    deleteCookie('til_movieId');
+    deleteCookie('til_movieSeq');
+    deleteCookie('til_similarKeyword');
+    // 스토어도 지운다.
+    this.$store.commit('ClearMovie');
+    this.$store.commit('ClearInforMovie');
   },
   methods: {
     submitForm() {

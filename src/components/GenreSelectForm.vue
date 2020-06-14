@@ -1,9 +1,12 @@
 <template>
-  <div class="GenreSelectbuttons">
-    <button @click="submitKeyword(item)" v-for="item in 장르" :key="item">
-      {{ item }}
-    </button>
-  </div>
+  <ul class="GenreSelectbuttons">
+    <li v-for="item in 장르" :key="item">
+      <button @click="submitKeyword(item)" class="cover">
+        <!-- {{ item }} -->
+      </button>
+      <span>{{ item }}</span>
+    </li>
+  </ul>
 </template>
 
 <script>
@@ -13,14 +16,13 @@ export default {
     return {
       genreValue: '',
       장르: [
-        'SF',
         '로맨스',
-        '드라마',
-        '액션',
+        '재난',
+        '히어로',
+        '코미디',
         '판타지',
-        '미스터리',
-        '멜로드라마',
         '공포',
+        '뮤지컬',
         '추리',
       ],
     };
