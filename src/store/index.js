@@ -1,12 +1,14 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { fetchMovie, fetchSimilarMovie } from '../api/index';
+import { fetchMovie, fetchSimilarMovie, fetchHeartMovie } from '../api/index';
 import {
   getTypeFromCookie,
   getValueFromCookie,
   getMovieIdFromCookie,
   getMovieSeqFromCookie,
   getSimilarKeywordFromCookie,
+  getHeartMIFromCookie,
+  getHeartMSFromCookie,
 } from '../utils/cookies';
 
 Vue.use(Vuex);
@@ -21,6 +23,9 @@ export default new Vuex.Store({
     movieId: getMovieIdFromCookie() || '',
     movieSeq: getMovieSeqFromCookie() || '',
     similarKeyword: getSimilarKeywordFromCookie() || '',
+    heartMovie: [],
+    heartMovieId: getHeartMIFromCookie(),
+    heartMovieSeq: getHeartMSFromCookie(),
   },
   mutations: {
     SET_MOVIE(state, data) {
@@ -38,14 +43,13 @@ export default new Vuex.Store({
       state.movieId = data.movieId;
       state.movieSeq = data.movieSeq;
     },
-    // SET_MOVIEID(state, data) {
-    //   state.movieId = data;
-    // },
-    // SET_MOVIESEQ(state, data) {
-    //   state.movieSeq = data;
-    // },
     SET_SIMILARKEYWORD(state, data) {
       state.similarKeyword = data;
+    },
+    SET_HEART(state, data) {
+      state.heartMovie = data;
+      state.heartMovieId = data.movieId;
+      state.heartMovieSeq = data.movieSeq;
     },
     ClearMovie(state) {
       (state.value = ''),
@@ -73,6 +77,12 @@ export default new Vuex.Store({
     FECH_SIMILARMOVIE(context, value) {
       return fetchSimilarMovie(value).then(res => {
         context.commit('SET_MOVIE', res.data);
+        return res;
+      });
+    },
+    FECH_HEARTMOVIE(context, value) {
+      return fetchHeartMovie(value).then(res => {
+        context.commit('SET_HEART', res.data);
         return res;
       });
     },

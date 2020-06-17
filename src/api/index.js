@@ -25,8 +25,11 @@ function fetchMovie(value) {
 function fetchSimilarMovie(value) {
   return axios.get(`${config.baseURL}listCount=10&${value}${config.myKey}`);
 }
+function fetchHeartMovie(value) {
+  return axios.get(`${config.baseURL}&${value}${config.myKey}`);
+}
 // function fetchInforMovie(value) {
 //   return axios.get(`${config.baseURL}${value}${config.myKey}`);
 // }
 
-export { fetchMovie, fetchSimilarMovie };
+export { fetchMovie, fetchSimilarMovie, fetchHeartMovie };

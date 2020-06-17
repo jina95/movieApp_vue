@@ -6,22 +6,94 @@ a {
     text-decoration:none;
 }
 .app {
+    /* width: calc (100% - 40px ); */
     padding: 0 20px;
 }
 header{
-    padding:20px 0;
+    /* padding:20px 0; */
+    padding:6vh 0;
     /* background-color: #F2CB57; */
     text-align: center;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
+    margin-bottom: 10vh;
 }
+
+/* common */
 button {
   border:0;
   padding:0;
   cursor: pointer;
   /* background-color: transparent; */
 }
+
+
+.result_list {
+  overflow: hidden;
+}
+
+.result_list .result_head {
+  padding:10px 7px;
+  background-color: #333;
+}
+.result_list .result_head h3{
+  display: block;
+  width:180px;
+  color: #808080;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  /* padding-bottom: 5px; */
+}
+.result_list .result_head .favoriteBtnBox button {
+  background-color: transparent;
+}
+.result_list .result_head .favoriteBtnBox {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.result_list .result_head .favoriteBtnBox i {
+  color: white;
+}
+.result_list li {
+  position: relative;
+  float: left;
+  width: auto;
+  margin: 20px;
+}
+
+.result_list li > a {
+  display: inline-block;
+
+  width:213px;
+  height: 316px;
+}
+.result_list li > a > img {
+  /* width: 100%; */
+  width: 213px;
+  height: 316px;
+  /* Img 와 a 중 ... 어떤거를 사이즈를 정하는게 더 현명할까? */
+}
+.result_list li .movieInfor {
+  display: none;
+}
+.result_list li:hover .movieInfor {
+  display: block;
+  position: absolute;
+  top:36px;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  /* width:213px; */
+  /* width:213px; */
+  /* height: 316px; */
+  padding:15px;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+
 .logo {
-    font-size:50px;
+    font-size:70px;
     font-weight: bold;
     color: #E50914;
 }
@@ -221,7 +293,15 @@ button {
 
 /* components - similarContents */
 .inforSimilarContent {
+  height: 400px;
+  width: calc(100vw - 40px );
+  padding-top: 20px;
   color: white;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+.inforSimilarContent > ul {
+  width: 2530px;
 }
 
 /* components - genreSelectForm */
@@ -229,7 +309,7 @@ button {
   /* background-color: teal; */
   height: 50vh;
   padding:20px 18vw;
-  margin-top:10vh;
+  margin-top:4vh;
   
 }
 .GenreSelectbuttons li {
@@ -288,6 +368,8 @@ button {
 /* components - favoriteItems */
 
 .favoriteItemsCom > a {
+  position: absolute;
+  right: 20px;
   color: white;
 }
 

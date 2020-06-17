@@ -6,7 +6,7 @@
         <b>{{ value }}</b>
       </span>
       <span class="resultTotal">토탈 값: {{ resultTotalCount }}</span>
-      <ul>
+      <ul class="result_list">
         <li v-for="item in $store.state.movie" :key="item.DOCID">
           <div class="result_head">
             <h3>{{ replaceName(item.title) }}</h3>
@@ -20,7 +20,7 @@
             </div>
           </div>
           <a><img :src="srcPosterCheck(item.posters)"/></a>
-          <div class="movieInfor" @click.prevent="goToInfroPage(item)">
+          <div class="movieInfor" @click.prevent="goToInforPage(item)">
             <span>감독: {{ item.directors.director[0].directorNm }}</span>
             <p>{{ item.plots.plot[0].plotText }}</p>
           </div>
@@ -40,6 +40,9 @@ import {
   saveMovieSeqToCookie,
   saveValueToCookie,
   saveSimilarKeywordToCookie,
+  saveHeartMIToCookie,
+  saveHeartMSToCookie,
+  deleteCookie,
 } from '../utils/cookies';
 import { srcCheck } from '../utils/filters';
 
@@ -72,13 +75,11 @@ export default {
       // 포스터 주소 체크 (중복여부 & | 체크)
       return srcCheck(item);
     },
-    goToInfroPage(item) {
+    goToInforPage(item) {
       let firstGenre = item.genre.substring(0, item.genre.indexOf(','));
       // 첫번째 키워드 확인
 
       this.$store.commit('SET_INFORMOVIE', item);
-      // this.$store.commit('SET_MOVIEID', item.movieId);
-      // this.$store.commit('SET_MOVIESEQ', item.movieSeq);
       this.$store.commit('SET_SIMILARKEYWORD', firstGenre);
 
       // 쿠키에 저장
@@ -93,9 +94,17 @@ export default {
       item.heartMode = 'aa';
       this.heartMode = true;
       console.log(item);
+
+      // 쿠키 저장
+      saveHeartMIToCookie(item.movieId);
+      saveHeartMSToCookie(item.movieSeq);
     },
     heartOff() {
       this.heartMode = false;
+
+      // 쿠키 삭제
+      deleteCookie('til_heartMI');
+      deleteCookie('til_heartMS');
     },
   },
 };
